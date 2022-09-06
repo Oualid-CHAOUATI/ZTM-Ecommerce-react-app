@@ -1,0 +1,14 @@
+.categories-wrapper {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.categories-wrapper .category-wrapper {
+  width: min(250px, 100%);
+}
+.categories-wrapper .category-wrapper .img-wrapper {
+  aspect-ratio: 0.8;
+  background-color: blue;
+  background-size: cover;
+}/*# sourceMappingURL=Category.styles.css.map */

@@ -1,0 +1,22 @@
+.categories-wrapper{
+
+
+    display: flex;
+    gap:1em;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    // justify-content: space-between;
+
+    .category-wrapper{
+        width: Min(250px,100%);
+        .img-wrapper{
+            // width: 100vw;
+            // max-width: 250px;
+            // flex-basis: 100%;
+            aspect-ratio: .8;
+            background-color: blue;
+            background-size: cover;
+        }
+
+    }
+}
