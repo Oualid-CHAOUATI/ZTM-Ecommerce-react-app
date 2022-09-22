@@ -1,0 +1,21 @@
+
+nav.main-nav{
+    // background:red;
+
+
+    .logo-link{
+        height: 2em;
+        aspect-ratio: 1;
+        display:inline-block;
+        padding:.2em;
+        .logo{
+            height: 100%;
+            width: 100%;
+        }
+        
+        svg{
+            width:100%;
+            aspect-ratio:1;
+        }
+    }
+}

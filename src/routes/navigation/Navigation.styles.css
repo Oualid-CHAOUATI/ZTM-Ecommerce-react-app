@@ -1,0 +1,14 @@
+nav.main-nav .logo-link {
+  height: 2em;
+  aspect-ratio: 1;
+  display: inline-block;
+  padding: 0.2em;
+}
+nav.main-nav .logo-link .logo {
+  height: 100%;
+  width: 100%;
+}
+nav.main-nav .logo-link svg {
+  width: 100%;
+  aspect-ratio: 1;
+}/*# sourceMappingURL=Navigation.styles.css.map */
