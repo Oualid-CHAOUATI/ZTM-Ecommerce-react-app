@@ -1,4 +1,3 @@
-import Directory from "../../components/directory/Directory.component";
 
 const Home = () => {
   const categoriesArray = [
@@ -29,11 +28,7 @@ const Home = () => {
     },
   ];
 
-  return (
-    <div className="Home">
-      <Directory array={categoriesArray} />
-    </div>
-  );
+  return <div className="Home"></div>;
 };
 
 export default Home;

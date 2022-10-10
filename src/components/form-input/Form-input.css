@@ -1,0 +1,44 @@
+.input-field {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  position: relative;
+  margin-top: 1.5em;
+}
+.input-field + .input-field {
+  margin-top: 2em;
+}
+.input-field input, .input-field label {
+  padding: 0.5em 0.3em 0.5em 0.2em;
+  line-height: 1em;
+  font-size: inherit;
+}
+.input-field input {
+  --spread:2px;
+  border: 0;
+  box-shadow: 0 0px 0 var(--spread) rgb(35, 78, 208);
+  outline: 0;
+  transition: 200ms;
+}
+.input-field input:focus {
+  --spread:5px;
+}
+.input-field label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  transition: 300ms;
+}
+.input-field input:is(:not(:-moz-placeholder-shown), :focus) ~ label {
+  top: -1.7em;
+  transform: translateY(0%) scale(0.8);
+}
+.input-field input:is(:not(:-ms-input-placeholder), :focus) ~ label {
+  top: -1.7em;
+  transform: translateY(0%) scale(0.8);
+}
+.input-field input:is(:not(:placeholder-shown), :focus) ~ label {
+  top: -1.7em;
+  transform: translateY(0%) scale(0.8);
+}/*# sourceMappingURL=Form-input.css.map */

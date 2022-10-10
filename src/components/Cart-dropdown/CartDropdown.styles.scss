@@ -1,0 +1,30 @@
+.cart-drowp-down{
+  padding:1em;
+  border:2px solid #111;
+  width: 300px;
+  max-width: 100%;
+
+
+  position: absolute;
+  top:100%;
+  background:#fff;
+
+
+  .items{
+    max-height: 300px;
+    overflow-y:scroll ;
+    overflow-x:hidden ;
+  }
+  .checkout-btn{
+    width:100%;
+    // padding:.
+    text-align: center;
+    padding-inline: 0;
+    background:#222;
+    color: #fff;
+
+    border:0;
+
+    margin-top: .5em;
+  }
+}

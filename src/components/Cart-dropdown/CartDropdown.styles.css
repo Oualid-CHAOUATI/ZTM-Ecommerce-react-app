@@ -1,0 +1,23 @@
+.cart-drowp-down {
+  padding: 1em;
+  border: 2px solid #111;
+  width: 300px;
+  max-width: 100%;
+  position: absolute;
+  top: 100%;
+  background: #fff;
+}
+.cart-drowp-down .items {
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.cart-drowp-down .checkout-btn {
+  width: 100%;
+  text-align: center;
+  padding-inline: 0;
+  background: #222;
+  color: #fff;
+  border: 0;
+  margin-top: 0.5em;
+}/*# sourceMappingURL=CartDropdown.styles.css.map */

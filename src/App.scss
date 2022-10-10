@@ -4,4 +4,31 @@ body{
 
     font-size: clamp(16px,1.5vw,27px);
     font-family: Poppins;
+
+
+    padding-inline: 1em;
+
+    padding-top: 5em;
+}
+
+
+
+.sqr-btn{
+    padding:.5em 1em;
+    // border:0;
+}
+
+
+
+form{
+    display:flex;
+    flex-direction: column;
+    gap:1em;
+
+
+    margin:auto;
+    max-width: 500px;
+    *{
+        width:100%;
+    }
 }

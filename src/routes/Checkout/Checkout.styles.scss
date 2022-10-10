@@ -1,0 +1,36 @@
+
+
+table{
+    margin:auto;
+}
+
+td,th{
+    padding:1em 2em;
+    // display:inline-flex;
+    // justify-content:center;
+    text-align: center;
+}
+
+
+
+
+.checkout-product-card{
+
+    .description{
+        gap:1em;
+    }
+
+    .img-wrapper{
+        height: 200px;
+        aspect-ratio: .8;
+    }
+
+
+  
+
+}
+
+tr td.total-price-cell{
+
+    text-align: left!important;
+}

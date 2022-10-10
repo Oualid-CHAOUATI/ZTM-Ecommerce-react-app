@@ -1,0 +1,10 @@
+.product-card img-wrapper {
+  height: 300Px;
+  aspect-ratio: 1;
+}
+.product-card img-wrapper img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=product-card.styles.css.map */

@@ -2,4 +2,21 @@
 body {
   font-size: clamp(16px, 1.5vw, 27px);
   font-family: Poppins;
+  padding-inline: 1em;
+  padding-top: 5em;
+}
+
+.sqr-btn {
+  padding: 0.5em 1em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: auto;
+  max-width: 500px;
+}
+form * {
+  width: 100%;
 }/*# sourceMappingURL=App.css.map */

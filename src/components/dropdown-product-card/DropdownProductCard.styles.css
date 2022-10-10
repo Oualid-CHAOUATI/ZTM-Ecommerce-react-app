@@ -1,0 +1,13 @@
+.dropdown-product .txt {
+  font-size: 0.7em;
+}
+.dropdown-product .img-wrapper {
+  height: 140px;
+  aspect-ratio: 0.7;
+}
+.dropdown-product .img-wrapper img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}/*# sourceMappingURL=DropdownProductCard.styles.css.map */

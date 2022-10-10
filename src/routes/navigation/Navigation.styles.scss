@@ -1,6 +1,9 @@
 
 nav.main-nav{
     // background:red;
+    position: fixed;
+    top:0;
+    background:#fff;
 
 
     .logo-link{
@@ -18,4 +21,8 @@ nav.main-nav{
             aspect-ratio:1;
         }
     }
+
+
+
+   
 }

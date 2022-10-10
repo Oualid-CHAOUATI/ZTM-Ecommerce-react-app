@@ -34,19 +34,19 @@
   justify-content: center;
 }
 
-.f-gap-0p5 {
+.gap-05 {
   gap: 0.5em;
 }
 
-.f-gap-1 {
+.gap-1 {
   gap: 1em;
 }
 
-.f-gap-2 {
+.gap-2 {
   gap: 2em;
 }
 
-.f-gap-3 {
+.gap-3 {
   gap: 3em;
 }
 
@@ -108,20 +108,11 @@ input, button {
   width: max-content;
 }
 
-.hide {
-  opacity: 0;
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
 .f-grow-1 {
   flex-grow: 1;
 }
 
-.img-wrapper.full-img img {
+.img-wrapper img {
   height: 100%;
   width: 100%;
   -o-object-fit: cover;
@@ -138,4 +129,25 @@ input, button {
 
 .abs {
   position: absolute;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.reset-li-a li {
+  list-style: none;
+}
+.reset-li-a a {
+  color: inherit;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.full-width {
+  width: 100%;
 }/*# sourceMappingURL=presets.css.map */

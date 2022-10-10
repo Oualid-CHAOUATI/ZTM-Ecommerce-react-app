@@ -1,0 +1,42 @@
+.input-field{
+    display:flex;
+    flex-direction: column;
+    max-width: 300px;
+    position: relative;
+
+    $line-h:1em;
+    $p-y:.5em;
+
+    margin-top: $line-h + $p-y;
+    &+ .input-field{
+        margin-top:2em;
+    }
+    input,label{
+        padding:$p-y .3em $p-y .2em ;
+        line-height: $line-h;
+        font-size: inherit;
+    }
+    input{
+        --spread:2px;
+        border:0;
+        box-shadow: 0 0px 0 var(--spread) rgb(35, 78, 208);
+        outline: 0;
+        transition:200ms;
+        &:focus{
+            --spread:5px;
+        }
+    }
+    label{
+        position: absolute;
+        top: 50%;
+        transform:translateY(-50%);
+        transform-origin: left center;
+        transition:300ms;
+    }
+    
+    input:is(:not(:placeholder-shown),:focus)~label{
+        top: -$line-h*1.2 - $p-y;
+        transform:translateY(0%) scale(.8);
+    }
+    
+}
