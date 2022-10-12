@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 const INITIAL_STATE = {
   dropdownOpen: true,
@@ -6,6 +6,56 @@ const INITIAL_STATE = {
   itemsCount: 0,
   totalPrice: 0,
 };
+
+const ACTION_TYPES = {
+  ADD_ITEM: "0",
+
+  REMOVE_ONE_ITEM: "1",
+  REMOVE_ITEM_COMPLETELY: "2",
+  TOGGLE_DROPDOWN_OPEN: "3",
+};
+const reducer = (state = INITIAL_STATE, { type, item }) => {
+  switch (type) {
+    case ACTION_TYPES.ADD_ITEM: {
+      const { list, price } = red_addItem({ item, list: state.items });
+      return {
+        ...state,
+        items: [...list],
+        totalPrice: state.totalPrice + price,
+        itemsCount: state.itemsCount + 1,
+      };
+    }
+    case ACTION_TYPES.REMOVE_ONE_ITEM: {
+      const result = red_removeOneItem({ item, list: state.items });
+      if (result) {
+        const { price } = result;
+        return {
+          ...state,
+          totalPrice: state.totalPrice - price,
+          itemsCount: state.itemsCount - 1,
+        };
+      }
+
+      return state;
+    }
+    case ACTION_TYPES.REMOVE_ITEM_COMPLETELY: {
+      const { list, price, quantity } = red_removeItemCompletely({
+        item,
+        list: state.items,
+      });
+      return {
+        ...state,
+        items: [...list],
+        totalPrice: state.totalPrice - price * quantity,
+        itemsCount: state.itemsCount - quantity,
+      };
+    }
+
+    case ACTION_TYPES.TOGGLE_DROPDOWN_OPEN:
+      return { ...state, dropdownOpen: !state.dropdown };
+  }
+};
+
 export const CartContext = createContext({
   ...INITIAL_STATE,
   setDropdownOpen: () => {},
@@ -17,72 +67,72 @@ const findItem = ({ item, list }) => {
   const index = list.indexOf(itemCopyInList);
   return { item: itemCopyInList, index };
 };
-function addItemQuantity(item, callback) {
-  item.quantity += 1;
-  callback();
+
+function addItemQuantity(item) {
+  if (!item.quantity) {
+    item.quantity = 1;
+  } else item.quantity += 1;
 }
-function reduceItemQuantity(item, callback) {
+
+function reduceItemQuantity(item) {
   if (item.quantity <= 1) return;
 
   item.quantity -= 1;
-  callback();
+}
+
+function red_addItem({ item, list }) {
+  console.log(list);
+  let { item: item_, index } = findItem({ item, list });
+  if (!item_) item_ = { ...item };
+  addItemQuantity(item_);
+
+  if (index < 0) {
+    list = [...list];
+    list.push(item_);
+  }
+
+  return { list, price: item.price };
+}
+function red_removeOneItem({ item, list }) {
+  const { item: itemToRemove, index } = findItem({ item, list });
+  if (itemToRemove.quantity <= 1) return null;
+
+  reduceItemQuantity(item); //modifier dans la liste lle meme
+  return { price: item.price };
+}
+
+function red_removeItemCompletely({ item, list }) {
+  const { index, item: itemToRemove } = findItem({ item, list });
+  if (item) {
+    list = [...list];
+    list.splice(index, 1);
+  }
+
+  return { list, quantity: itemToRemove.quantity, price: itemToRemove.price };
 }
 
 export const CartProvider = ({ children }) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [items, setItems] = useState([]);
-  const [itemsCount, setItemsCount] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [{ dropdownOpen, items, itemsCount, totalPrice }, dispatch] =
+    useReducer(reducer, INITIAL_STATE);
 
-  const setAndUpdateItems = () => setItems([...items]);
+  const removeOneItem = (item) =>
+    dispatch({ type: ACTION_TYPES.REMOVE_ONE_ITEM, item });
+  const removeItemCompletely = (item) =>
+    dispatch({ type: ACTION_TYPES.REMOVE_ITEM_COMPLETELY, item });
+  const addItem = (item) => dispatch({ type: ACTION_TYPES.ADD_ITEM, item });
 
-  useEffect(() => {
-    setItemsCount(
-      items.reduce(
-        (total, currentProduct) => total + currentProduct.quantity,
-        0
-      )
-    );
-
-    setTotalPrice(
-      items.reduce((total, item) => {
-        const { quantity, price } = item;
-        total += quantity * price;
-        return total;
-      }, 0)
-    );
-  }, [items]);
-  const addItemToCart = (itemToAdd) => {
-    const { item } = findItem({ item: itemToAdd, list: items });
-    if (!item) items.push({ ...itemToAdd, quantity: 1 });
-    else addItemQuantity(item, setAndUpdateItems);
-
-    setAndUpdateItems();
-  };
-
-  const removeItemFromCart = (itemToRemove) => {
-    const { index } = findItem({ item: itemToRemove, list: items });
-    items.splice(index, 1);
-    setAndUpdateItems();
-  };
-  const addItemQuantityGlobal = (itemToChange) => {
-    const { item } = findItem({ item: itemToChange, list: items });
-    if (item) addItemQuantity(item, setAndUpdateItems);
-  };
-  const reduceItemQuantityGlobal = (itemToChange) => {
-    const { item } = findItem({ item: itemToChange, list: items });
-    if (item) reduceItemQuantity(item, setAndUpdateItems);
-  };
+  const setDropdownOpen = () =>
+    dispatch({ type: ACTION_TYPES.TOGGLE_DROPDOWN_OPEN });
   const value = {
     dropdownOpen,
     setDropdownOpen,
-    addItemToCart,
+    addItemToCart: addItem,
     items,
     itemsCount,
     totalPrice,
-    addItemQuantity: addItemQuantityGlobal,
-    reduceItemQuantity: reduceItemQuantityGlobal,
-    removeItemFromCart,
+    addItemQuantity: addItem,
+    reduceItemQuantity: removeOneItem,
+    removeItemFromCart: removeItemCompletely,
   };
 
   return <CartContext.Provider value={value}>{children} </CartContext.Provider>;

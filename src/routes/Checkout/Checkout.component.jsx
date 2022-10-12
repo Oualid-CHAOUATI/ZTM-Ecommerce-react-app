@@ -29,7 +29,7 @@ export function Checkout() {
             const { id, imgURL, price, quantity, name } = item;
             const addQuantity = () => addItemQuantity(item);
             const reduceQuantity = () => reduceItemQuantity(item);
-            const removeItem = (item) => {
+            const removeItem = () => {
               removeItemFromCart(item);
             };
             return (
